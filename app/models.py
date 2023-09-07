@@ -27,13 +27,14 @@ class Meal_plan(Base):
     __tablename__='meal_plans'
 
     id=Column(Integer(),primary_key=True)
-    day=Column(String())
-    date=Column(Integer())
+    name=Column(String())
+    start_date=Column(String())
+    end=Column(Integer())
     ingredients=relationship('Ingredient',back_populates='meal_plan')
     recipes=association_proxy('ingredients','recipe',creator=lambda gm : Ingredient(recipe=gm))
 
     def __repr__(self):
-        return f"Day : {self.day}"   
+        return f"Name : {self.name}"   
 
 class Ingredient(Base):
     __tablename__='ingredients'
