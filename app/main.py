@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
-
-from models import *
+from models.models import *
+from database.database import session
+from sqlalchemy import func
 import click
 
 @click.group()
@@ -466,7 +466,35 @@ def get_recipes_by_meal_plan_and_category(meal_plan_name, recipe_category):
         click.echo(f"  Instructions: {recipe.instructions}")
         click.echo()
 cli.add_command(get_recipes_by_meal_plan_and_category)
+
+@click.command()
+@click.option('--ingredients', prompt="List of Ingredients", help="Comma-separated list of ingredients")
+def get_recipes_by_ingredients(ingredients):
+    """get recipes by ingredients"""
+    ingredient_list = [ingredient.strip() for ingredient in ingredients.split(',')]
     
+    recipes = (
+        session.query(Recipe)
+        .join(Ingredient, Ingredient.recipe_id == Recipe.id)
+        .filter(Ingredient.name.in_(ingredient_list))
+        .group_by(Recipe.id)
+        .having(func.count(Ingredient.id) == len(ingredient_list))
+        .all()
+    )
+
+    if not recipes:
+        click.echo(f"No recipes found with the provided ingredients: {', '.join(ingredient_list)}")
+        return
+
+    click.echo(f"Recipes with ingredients: {', '.join(ingredient_list)}")
+    for recipe in recipes:
+        click.echo(f"- Name: {recipe.name}")
+        click.echo(f"  Category: {recipe.category}")
+        click.echo(f"  Time Taken: {recipe.time_taken}")
+        click.echo(f"  Instructions: {recipe.instructions}")
+        click.echo()
+cli.add_command(get_recipes_by_ingredients)
+
 
 if __name__=='__main__':
     cli()    

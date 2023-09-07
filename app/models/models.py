@@ -1,14 +1,7 @@
-#!/usr/bin/env python3
-from sqlalchemy import create_engine,Column,Integer,String,ForeignKey
-from sqlalchemy.orm import sessionmaker,relationship
-from sqlalchemy.ext.declarative import declarative_base
+from database.database import Base
+from sqlalchemy import Column,Integer,String,ForeignKey
 from sqlalchemy.ext.associationproxy import association_proxy
-
-engine=create_engine('sqlite:///recipes.db')
-Session=sessionmaker(bind=engine)
-session=Session()
-
-Base=declarative_base() 
+from sqlalchemy.orm import relationship
 
 class Recipe(Base):
     __tablename__='recipes'
