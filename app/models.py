@@ -18,10 +18,15 @@ class Recipe(Base):
     time_taken=Column(Integer())
     instructions=Column(String())
     ingredients=relationship('Ingredient',back_populates='recipe')
-    meal_plans=association_proxy('ingredients','meal_plan',creator=lambda us: Ingredient(meal_plan=us))
+    meal_plans=association_proxy('ingredients','meal_plan',creator=lambda gm: Ingredient(meal_plan=gm))
 
     def __repr__(self):
-        return f"Recipe: {self.name} , Category: {self.category} ,Time: {self.time_taken}, Instructions: {self.instructions}"
+        return f"Recipe: {self.name} ,Category: {self.category} ,Time: {self.time_taken},Instructions: {self.instructions}"
+    
+    def recipe_ingredients(self):
+        return self.ingredients
+    def recipe_meal_plan(self):
+        return self.meal_plans
 
 class Meal_plan(Base):
     __tablename__='meal_plans'
@@ -31,10 +36,14 @@ class Meal_plan(Base):
     start_date=Column(String())
     end=Column(Integer())
     ingredients=relationship('Ingredient',back_populates='meal_plan')
-    recipes=association_proxy('ingredients','recipe',creator=lambda gm : Ingredient(recipe=gm))
+    recipes=association_proxy('ingredients','recipe',creator=lambda us : Ingredient(recipe=us))
 
     def __repr__(self):
-        return f"Name : {self.name}"   
+        return f"Name : {self.name}"
+    def meal_ingredients(self):
+        return self.ingredients
+    def meal_recipes(self):
+        return[ingredient.recipe for ingredient in self.ingredients]   
 
 class Ingredient(Base):
     __tablename__='ingredients'
