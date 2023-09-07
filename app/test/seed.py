@@ -14,16 +14,19 @@ if __name__=='__main__':
 
     fake=Faker()
 
-    recipe_names["Amish Breakfast Casserole","Creamy White Chili",
+    recipe_names=["Amish Breakfast Casserole","Creamy White Chili",
                  "Banana Bread","Cheeseburger Soup","Chicken Potpie",
                  "Chicken Fajitas","Apple Pie","Basic Homemade Bread"]
-    category
+    categorys=["breakfast","lunch","dinner","dessert"]
+
+
+
 
     recipes=[]
     for i in range (10):
         recipe=Recipe(
-            name=fake.name(),
-            category=fake.name(),
+            name=random.choice(recipe_names),
+            category=random.choice(categorys),
             instructions=fake.sentence(),
             time_taken=fake.pyint()
         )
@@ -31,11 +34,10 @@ if __name__=='__main__':
         session.commit()
         recipes.append(recipe)
    
-
     meal_plans=[] 
     for i in range(7):
         meal_plan=Meal_plan(
-            name=fake.name(),
+            name=fake.day_of_week(),
             start_date=fake.date_of_birth(),
             end=fake.date_of_birth()
         )
@@ -44,13 +46,17 @@ if __name__=='__main__':
         meal_plans.append(meal_plan)
     
     
-
+    ingredient_names=["Gruyere CheeseIt","Gouda CheeseIt","Feta CheeseFeta","Milk"
+                     " Coriander","Chives","Galangal","Tulsi","Sage","Rosemary",
+                     "Yellow Chillies","Oregano","Nasturtium","Salt","Mustard ",
+                     "Paprika","Mint Leaves","Marjoram","Lemongrass","Red Chilli",
+                     "Saffron","Dried Fenugreek"]
     ingredients=[]
     for recipe in recipes:
         for i in range(random.randint(1,10)):
             meal_plan=random.choice(meal_plans)
             ingredient=Ingredient(
-                name=fake.company(),
+                name=random.choice(ingredient_names),
                 recipe_id=recipe.id,
                 meal_plan_id=meal_plan.id
             )   
