@@ -23,10 +23,6 @@ class Recipe(Base):
     def __repr__(self):
         return f"Recipe: {self.name} ,Category: {self.category} ,Time: {self.time_taken},Instructions: {self.instructions}"
     
-    def recipe_ingredients(self):
-        return self.ingredients
-    def recipe_meal_plan(self):
-        return self.meal_plans
 
 class Meal_plan(Base):
     __tablename__='meal_plans'
@@ -40,10 +36,7 @@ class Meal_plan(Base):
 
     def __repr__(self):
         return f"Name : {self.name}"
-    def meal_ingredients(self):
-        return self.ingredients
-    def meal_recipes(self):
-        return[ingredient.recipe for ingredient in self.ingredients]   
+    
 
 class Ingredient(Base):
     __tablename__='ingredients'
