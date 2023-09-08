@@ -19,6 +19,7 @@
 - sqlalchemy
 - alembic
 - click
+- faker
 
 ## Usage and features
 1. Getting Started:
