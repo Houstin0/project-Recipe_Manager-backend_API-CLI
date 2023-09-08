@@ -325,7 +325,7 @@ cli.add_command(all_ingredients)
 
 @click.command()
 @click.option('--category', prompt="Recipe Category to Retrieve", help="Recipe category to retrieve")
-def get_recipes_by_category(category):
+def recipes_by_category(category):
     """get recipes by category"""
     recipes = session.query(Recipe).filter(Recipe.category.ilike(f"%{category}%")).all()
 
@@ -341,12 +341,12 @@ def get_recipes_by_category(category):
         click.echo(f"  Instructions: {recipe.instructions}")
         click.echo()
 
-cli.add_command(get_recipes_by_category)
+cli.add_command(recipes_by_category)
 
 
 @click.command()
 @click.option('--start_date', prompt="Meal Plan Start Date to Retrieve", help="Meal plan start date to retrieve")
-def get_meal_plans_by_start_date(start_date):
+def meal_plans_by_start_date(start_date):
     """get meal plans by start date"""
     meal_plans = session.query(Meal_plan).filter(Meal_plan.start_date == start_date).all()
 
@@ -360,11 +360,11 @@ def get_meal_plans_by_start_date(start_date):
         click.echo(f"  Start Date: {meal_plan.start_date}")
         click.echo(f"  End Date: {meal_plan.end}")
         click.echo()
-cli.add_command(get_meal_plans_by_start_date)
+cli.add_command(meal_plans_by_start_date)
  
 @click.command()
 @click.option('--recipe_name', prompt="Recipe Name to Retrieve Ingredients From", help="Recipe name to retrieve ingredients from")
-def get_ingredients_by_recipe_name(recipe_name):
+def ingredients_by_recipe(recipe_name):
     """get ingredients by recipe name"""
 
     recipe = session.query(Recipe).filter(Recipe.name == recipe_name).first()
@@ -385,11 +385,11 @@ def get_ingredients_by_recipe_name(recipe_name):
         click.echo(f"- Name: {ingredient.name}")
         click.echo(f"  Meal Plan: {ingredient.meal_plan.name if ingredient.meal_plan else 'N/A'}")
         click.echo()
-cli.add_command(get_ingredients_by_recipe_name)
+cli.add_command(ingredients_by_recipe)
  
 @click.command()
 @click.option('--meal_plan_name', prompt="Meal Plan Name to Retrieve Ingredients From", help="Meal plan name to retrieve ingredients from")
-def get_ingredients_by_meal_plan_name(meal_plan_name):
+def ingredients_by_meal_plan(meal_plan_name):
     """get ingredients by meal plan name"""
 
    
@@ -411,11 +411,11 @@ def get_ingredients_by_meal_plan_name(meal_plan_name):
         click.echo(f"- Name: {ingredient.name}")
         click.echo(f"  Recipe: {ingredient.recipe.name if ingredient.recipe else 'N/A'}")
         click.echo()
-cli.add_command(get_ingredients_by_meal_plan_name)
+cli.add_command(ingredients_by_meal_plan)
 
 @click.command()
 @click.option('--meal_plan_name', prompt="Meal Plan Name to Retrieve Recipes From", help="Meal plan name to retrieve recipes from")
-def get_recipes_by_meal_plan(meal_plan_name):
+def recipes_by_meal_plan(meal_plan_name):
     """get recipes by meal plan name"""
     meal_plan = session.query(Meal_plan).filter(Meal_plan.name == meal_plan_name).first()
 
@@ -436,12 +436,12 @@ def get_recipes_by_meal_plan(meal_plan_name):
         click.echo(f"  Time Taken: {recipe.time_in_minutes}")
         click.echo(f"  Instructions: {recipe.instructions}")
         click.echo()
-cli.add_command(get_recipes_by_meal_plan)
+cli.add_command(recipes_by_meal_plan)
 
 @click.command()
 @click.option('--meal_plan_name', prompt="Meal Plan Name", help="Meal plan name")
 @click.option('--recipe_category', prompt="Recipe Category", help="Recipe category")
-def get_recipes_by_meal_plan_and_category(meal_plan_name, recipe_category):
+def recipes_by_meal_plan__category(meal_plan_name, recipe_category):
     """get recipes by meal plan and category"""
     meal_plan = session.query(Meal_plan).filter(Meal_plan.name == meal_plan_name).first()
 
@@ -465,11 +465,11 @@ def get_recipes_by_meal_plan_and_category(meal_plan_name, recipe_category):
         click.echo(f"  Time Taken: {recipe.time_in_minutes}")
         click.echo(f"  Instructions: {recipe.instructions}")
         click.echo()
-cli.add_command(get_recipes_by_meal_plan_and_category)
+cli.add_command(recipes_by_meal_plan__category)
 
 @click.command()
 @click.option('--ingredients', prompt="List of Ingredients", help="Comma-separated list of ingredients")
-def get_recipes_by_ingredients(ingredients):
+def recipes_by_ingredients(ingredients):
     """get recipes by ingredients"""
     ingredient_list = [ingredient.strip() for ingredient in ingredients.split(',')]
     
@@ -493,12 +493,12 @@ def get_recipes_by_ingredients(ingredients):
         click.echo(f"  Time Taken: {recipe.time_in_minutes}")
         click.echo(f"  Instructions: {recipe.instructions}")
         click.echo()
-cli.add_command(get_recipes_by_ingredients)
+cli.add_command(recipes_by_ingredients)
 
 @click.command()
 @click.option('--recipe_category', prompt="Recipe Category", help="Recipe category")
 @click.option('--meal_plan_name', prompt="Meal Plan Name", help="Meal plan name")
-def get_ingredients_by_category_and_meal_plan(recipe_category, meal_plan_name):
+def ingredients_by_category__meal_plan(recipe_category, meal_plan_name):
     """get ingredients by recipe category and meal plan name"""
     meal_plan = session.query(Meal_plan).filter(Meal_plan.name == meal_plan_name).first()
 
@@ -523,10 +523,7 @@ def get_ingredients_by_category_and_meal_plan(recipe_category, meal_plan_name):
         click.echo(f"- Name: {ingredient.name}")
         click.echo(f"  Recipe: {ingredient.recipe.name if ingredient.recipe else 'N/A'}")
         click.echo()
-cli.add_command(get_ingredients_by_category_and_meal_plan)
-
-
-
+cli.add_command(ingredients_by_category__meal_plan)
 
 if __name__=='__main__':
     cli()    

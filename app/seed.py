@@ -41,10 +41,11 @@ if __name__=='__main__':
         session.commit()
         recipes.append(recipe)
    
+    meal_plan_names=["sunday","monday","tuesday","wednesday","thursday","friday","saturday"]
     meal_plans=[] 
-    for i in range(7):
+    for i in range(10):
         meal_plan=Meal_plan(
-            name=fake.day_of_week(),
+            name=random.choice(meal_plan_names),
             start_date=fake.date_of_birth(),
             end=fake.date_of_birth()
         )
