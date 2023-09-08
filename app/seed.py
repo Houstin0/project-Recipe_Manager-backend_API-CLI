@@ -14,9 +14,16 @@ if __name__=='__main__':
 
     fake=Faker()
 
-    recipe_names=["Amish Breakfast Casserole","Creamy White Chili",
+    recipe_names=["Amish Casserole","Creamy White Chili",
                  "Banana Bread","Cheeseburger Soup","Chicken Potpie",
-                 "Chicken Fajitas","Apple Pie","Basic Homemade Bread"]
+                 "Chicken Fajitas","Apple Pie","Basic Homemade Bread",
+                 "Zucchini Cupcakes","Cheddar Meat Loaves","Meat Loaf",
+                 "Moist Chocolate Cake","Stuffed Pepper Soup","Fluffy Key Lime Pie",
+                 "Pineapple Orange Cake","Baked Spaghetti","Buttery Cornbread",
+                 "Chicken Curry","Rice","Chocolate Cake","Mushroom Chicken",
+                 "Hot Milk Cake","Rustic Italian Tortellini Soup","Coffee","Pizza",
+                 "Roasted Meat","Burger","Cake","Cookies","Potato Pie","Salad"
+                 "Fried Meat","Bone Soup"]
     categorys=["breakfast","lunch","dinner","dessert"]
 
 
