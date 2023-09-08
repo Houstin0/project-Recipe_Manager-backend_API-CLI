@@ -495,6 +495,38 @@ def get_recipes_by_ingredients(ingredients):
         click.echo()
 cli.add_command(get_recipes_by_ingredients)
 
+@click.command()
+@click.option('--recipe_category', prompt="Recipe Category", help="Recipe category")
+@click.option('--meal_plan_name', prompt="Meal Plan Name", help="Meal plan name")
+def get_ingredients_by_category_and_meal_plan(recipe_category, meal_plan_name):
+    """get ingredients by recipe category and meal plan name"""
+    meal_plan = session.query(Meal_plan).filter(Meal_plan.name == meal_plan_name).first()
+
+    if not meal_plan:
+        click.echo(f"Meal plan '{meal_plan_name}' not found.")
+        return
+
+    ingredients = (
+        session.query(Ingredient)
+        .join(Recipe, Recipe.id == Ingredient.recipe_id)
+        .filter(Recipe.category.ilike(f"%{recipe_category}%"))
+        .filter(Ingredient.meal_plan_id == meal_plan.id)
+        .all()
+    )
+
+    if not ingredients:
+        click.echo(f"No ingredients found for recipe category '{recipe_category}' and meal plan '{meal_plan_name}'.")
+        return
+
+    click.echo(f"Ingredients for recipe category '{recipe_category}' and meal plan '{meal_plan_name}':")
+    for ingredient in ingredients:
+        click.echo(f"- Name: {ingredient.name}")
+        click.echo(f"  Recipe: {ingredient.recipe.name if ingredient.recipe else 'N/A'}")
+        click.echo()
+
+# Add the get_ingredients_by_category_and_meal_plan command to the CLI
+cli.add_command(get_ingredients_by_category_and_meal_plan)
+
 
 
 
