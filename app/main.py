@@ -8,17 +8,17 @@ def cli():
     pass
 
 @click.command() 
-@click.option('--name',prompt="Recipe Name",help="number of greetings")   
-@click.option('--category',prompt="Recipe category",help="number of greetings")   
-@click.option('--time_taken',prompt="Time Taken",help="number of greetings")   
-@click.option('--instructions',prompt="Recipe Instructions",help="number of greetings")   
-def add_recipe(name,category,time_taken,instructions):
+@click.option('--name',prompt="Recipe Name")   
+@click.option('--category',prompt="Recipe category")   
+@click.option('--time_in_minutes',prompt="Time Taken in minutes")   
+@click.option('--instructions',prompt="Recipe Instructions")   
+def add_recipe(name,category,time_in_minutes,instructions):
         """Add an new Recipe"""
 
         recipe=Recipe(
         name=name,
         category=category,
-        time_taken=time_taken,
+        time_in_minutes=time_in_minutes,
         instructions=instructions  
         )
         session.add(recipe)
@@ -127,7 +127,7 @@ cli.add_command(delete_all_meal_plans)
 
 @click.command()
 @click.option('--recipe_name', prompt="Recipe Name to Update", help="Recipe name to update")
-@click.option('--column', prompt="Column to Update (name, category, time_taken, instructions)", help="Column to update")
+@click.option('--column', prompt="Column to Update (name, category, time_in_minutes, instructions)", help="Column to update")
 @click.option('--new_value', prompt="New Value", help="New value for the column")
 def update_recipe_column(recipe_name, column, new_value):
     """Update a column of a recipe"""
@@ -142,12 +142,12 @@ def update_recipe_column(recipe_name, column, new_value):
         recipe.name = new_value
     elif column == 'category':
         recipe.category = new_value
-    elif column == 'time_taken':
-        recipe.time_taken = new_value
+    elif column == 'time_in_minutes':
+        recipe.time_in_minutes = new_value
     elif column == 'instructions':
         recipe.instructions = new_value
     else:
-        click.echo("Invalid column name. Available columns: name, category, time_taken, instructions.")
+        click.echo("Invalid column name. Available columns: name, category, time_in_minutes, instructions.")
         return
 
     session.commit()
@@ -279,7 +279,7 @@ def all_recipes():
     for recipe in recipes:
         click.echo(f"- Name: {recipe.name}")
         click.echo(f"  Category: {recipe.category}")
-        click.echo(f"  Time Taken: {recipe.time_taken}")
+        click.echo(f"  Time Taken: {recipe.time_in_minutes}")
         click.echo(f"  Instructions: {recipe.instructions}")
         click.echo()
 cli.add_command(all_recipes)
@@ -337,7 +337,7 @@ def get_recipes_by_category(category):
     for recipe in recipes:
         click.echo(f"- Name: {recipe.name}")
         click.echo(f"  Category: {recipe.category}")
-        click.echo(f"  Time Taken: {recipe.time_taken}")
+        click.echo(f"  Time Taken: {recipe.time_in_minutes}")
         click.echo(f"  Instructions: {recipe.instructions}")
         click.echo()
 
@@ -433,7 +433,7 @@ def get_recipes_by_meal_plan(meal_plan_name):
     for recipe in recipes:
         click.echo(f"- Name: {recipe.name}")
         click.echo(f"  Category: {recipe.category}")
-        click.echo(f"  Time Taken: {recipe.time_taken}")
+        click.echo(f"  Time Taken: {recipe.time_in_minutes}")
         click.echo(f"  Instructions: {recipe.instructions}")
         click.echo()
 cli.add_command(get_recipes_by_meal_plan)
@@ -462,7 +462,7 @@ def get_recipes_by_meal_plan_and_category(meal_plan_name, recipe_category):
     for recipe in recipes:
         click.echo(f"- Name: {recipe.name}")
         click.echo(f"  Category: {recipe.category}")
-        click.echo(f"  Time Taken: {recipe.time_taken}")
+        click.echo(f"  Time Taken: {recipe.time_in_minutes}")
         click.echo(f"  Instructions: {recipe.instructions}")
         click.echo()
 cli.add_command(get_recipes_by_meal_plan_and_category)
@@ -490,7 +490,7 @@ def get_recipes_by_ingredients(ingredients):
     for recipe in recipes:
         click.echo(f"- Name: {recipe.name}")
         click.echo(f"  Category: {recipe.category}")
-        click.echo(f"  Time Taken: {recipe.time_taken}")
+        click.echo(f"  Time Taken: {recipe.time_in_minutes}")
         click.echo(f"  Instructions: {recipe.instructions}")
         click.echo()
 cli.add_command(get_recipes_by_ingredients)
@@ -523,8 +523,6 @@ def get_ingredients_by_category_and_meal_plan(recipe_category, meal_plan_name):
         click.echo(f"- Name: {ingredient.name}")
         click.echo(f"  Recipe: {ingredient.recipe.name if ingredient.recipe else 'N/A'}")
         click.echo()
-
-# Add the get_ingredients_by_category_and_meal_plan command to the CLI
 cli.add_command(get_ingredients_by_category_and_meal_plan)
 
 

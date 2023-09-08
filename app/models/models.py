@@ -9,13 +9,13 @@ class Recipe(Base):
     id=Column(Integer(),primary_key=True)
     name=Column(String())
     category=Column(String())
-    time_taken=Column(Integer())
+    time_in_minutes=Column(Integer())
     instructions=Column(String())
     ingredients=relationship('Ingredient',back_populates='recipe')
     meal_plans=association_proxy('ingredients','meal_plan',creator=lambda gm: Ingredient(meal_plan=gm))
 
     def __repr__(self):
-        return f"Recipe: {self.name} ,Category: {self.category} ,Time: {self.time_taken},Instructions: {self.instructions}"
+        return f"Recipe: {self.name} ,Category: {self.category} ,Time: {self.time_in_minutes},Instructions: {self.instructions}"
     
 
 class Meal_plan(Base):

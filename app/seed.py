@@ -23,12 +23,12 @@ if __name__=='__main__':
 
 
     recipes=[]
-    for i in range (10):
+    for i in range (20):
         recipe=Recipe(
             name=random.choice(recipe_names),
             category=random.choice(categorys),
             instructions=fake.sentence(),
-            time_taken=fake.pyint()
+            time_in_minutes=fake.random_int(5,30)
         )
         session.add(recipe)
         session.commit()
@@ -53,7 +53,7 @@ if __name__=='__main__':
                      "Saffron","Dried Fenugreek"]
     ingredients=[]
     for recipe in recipes:
-        for i in range(random.randint(1,10)):
+        for i in range(random.randint(1,20)):
             meal_plan=random.choice(meal_plans)
             ingredient=Ingredient(
                 name=random.choice(ingredient_names),
