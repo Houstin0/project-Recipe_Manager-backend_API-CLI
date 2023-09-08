@@ -22,76 +22,78 @@
 - faker
 
 ## Usage and features
-1. Getting Started:
+Getting Started:
 - Launch the application using python main.py.
+- Run commands with python main.py <command>
+###Commands
 
-2. Add ingredient:
+1. Add ingredient:
 - Adds an ingredient to the ingredients table.
 
-3. Add meal plan:
+2. Add meal plan:
 - Adds a meal plan to the meal plans table.
 
-4. Add recipe:
+3. Add recipe:
 - Adds a recipe to the recipes table.
 
-5. All ingredients:
+4. All ingredients:
 - Displays a list of all ingredients in the ingredients table.
 
-6. All meal plans:
+5. All meal plans:
 - Displays a list of all meal plans in the meal plans table.
 
-7. All recipes:
+6. All recipes:
 - Displays a list of all recipes in the recipes table.
 
-8. Delete all meal plans:
+7. Delete all meal plans:
 - Delets all meal plans.
 
-9. Delete ingredient:
+8. Delete ingredient:
 - Deletes an ingrefient.
 
-10. Delete recipe:
+9. Delete recipe:
 - Delets a recipe.
 
-11. Ingredient by category and meal plan:
+10. Ingredient by category and meal plan:
 - Displays a list of ingredients that can be used as a shopping list.
 
-12. Ingredient by meal plan:
+11. Ingredient by meal plan:
 - Displays a list of all ingredients for the specified meal plan.
 
-13. Ingredients by recipe:
+12. Ingredients by recipe:
 - Displays a list of all ingredients for the specified recipe.
 
-14. meal plans by start date:
+13. meal plans by start date:
 - Displays a list of meal plans for the specified start date.
 
-15. Recipes by category:
+14. Recipes by category:
 - Displays a list of recipe belonging to a specified category(breakfast,lunch,dinner,dessert).
 
-16. Recipes by ingrendients:
+15. Recipes by ingrendients:
 - Displays a list of recipe belonging to specified ingredients.
 
-17. Recipes by meal plan:
+16. Recipes by meal plan:
 - Displays a list of recipe belonging to a specified meal plan.
 
-18. Recipes by meal plan and category:
+17. Recipes by meal plan and category:
 -Displays a list of recipe belonging to specified category and meal plan.
 
-19. Search ingredients:
+18. Search ingredients:
 - Displays a list of ingredients belonging to a specified name of an ingredient.
 
-20. search meal plan:
+19. search meal plan:
 - Displays a list of meal plans belonging to a specified name of meal plan.
 
-21. Search recipe:
+20. Search recipe:
 - Displays a list of recipe belonging to a specified  name of recipe.
 
-22. Update ingredient column:
+21. Update ingredient column:
 - Updates and ingredient.
 
-23. Update meal plan column:
+22. Update meal plan column:
 - updates a meal plan column.
 
-24. Update recipe column:
+23. Update recipe column:
 - Updates a recipe column.
 ## Contributors
 - Houstin Angwenyi
