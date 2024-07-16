@@ -4,10 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+flask = "*"
 sqlalchemy = "*"
 alembic = "*"
 faker = "*"
 click = "*"
+
 
 [dev-packages]
 

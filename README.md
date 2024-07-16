@@ -1,6 +1,6 @@
 # Recipe_Manager_and_Meal_Planner_CLI
  
- **Recipe Manager and Meal Planner CLI** is a command-line application designed to help you organize your recipes and plan for meals. With this tool, you can store, categorize, search for recipes, plan meals, and even generate shopping lists based on your meal plans. Whether you're a culinary enthusiast or just trying to simplify your meal planning, this CLI app has you covered.
+ **Recipe Manager and Meal Planner CLI** is a Flask command-line application designed to help you organize your recipes and plan for meals. With this tool, you can store, categorize, search for recipes, plan meals, and even generate shopping lists based on your meal plans. Whether you're a culinary enthusiast or just trying to simplify your meal planning, this CLI app has you covered.
 
  ## Installation
 1. Clone the repository to your local machine using git clone.
@@ -16,6 +16,7 @@
 - Ingredients
 
 ## Packages used
+-Flask
 - sqlalchemy
 - alembic
 - click
